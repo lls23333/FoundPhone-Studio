@@ -565,13 +565,17 @@ export function WhatsAppSkin(p: SkinProps) {
             <Video size={18} />
             <Phone size={17} />
           </div>
-          <MessageList
-            items={p.items.filter((i) => i.title === p.thread)}
-            creator={p.creator}
-            onItem={p.onItem}
-            onRead={p.onRead}
-            whatsapp
-          />
+          {p.items.some((i) => i.title === p.thread && i.body.trim()) ? (
+            <MessageList
+              items={p.items.filter((i) => i.title === p.thread && i.body.trim())}
+              creator={p.creator}
+              onItem={p.onItem}
+              onRead={p.onRead}
+              whatsapp
+            />
+          ) : (
+            <div className="skin-empty">还没有聊天记录，发送消息开始聊天</div>
+          )}
           <Compose creator={p.creator} onAdd={p.onAdd} wa />
         </>
       ) : (
@@ -622,7 +626,7 @@ export function WhatsAppSkin(p: SkinProps) {
                         <strong>{t}</strong>
                         <p>
                           {last.outgoing && <CheckCheck size={12} />}{" "}
-                          {last.body}
+                          {last.body || "点击开始聊天"}
                         </p>
                       </div>
                       <time>{last.time.slice(-5)}</time>
