@@ -272,11 +272,11 @@ export function ControlCenter({
         <div>
           <span>
             <Signal size={18} />
-            <small>主号</small> 中国移动 <Wifi size={17} />
+            <small>主号</small> <Wifi size={17} />
           </span>
           <span>
             <Signal size={18} />
-            <small>副号</small> 中国电信
+            <small>副号</small>
           </span>
         </div>
         <span>
